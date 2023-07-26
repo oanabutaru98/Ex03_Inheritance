@@ -30,5 +30,10 @@ public class Main {
         Shape s = new Circle("circle", "green", 2, 2, 2);
         System.out.println(s.getColor());
 
+        Circle c3 = new Circle("circle3", "white", 0,0,10);
+        System.out.println(c3.getX() + " " +c3.getY());
+        c3.move(10.5, 4.3);
+        System.out.println(c3.getX() + " " +c3.getY());
+
     }
 }

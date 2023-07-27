@@ -1,5 +1,7 @@
 package bankapp.model;
 
+import bankapp.exception.InsufficientFundsException;
+
 public abstract class Account {
     private String owner;
     private String IBAN;
@@ -71,7 +73,7 @@ public abstract class Account {
         System.out.println("Current balance: " + currentBalance);
     }
     public abstract void deposit(double amount);
-    public abstract void withdraw(double amount);
+    public abstract void withdraw(double amount) throws InsufficientFundsException;
 
     public boolean isWithdrawPossible(double amount) {
         return currentBalance >= amount;

@@ -1,5 +1,7 @@
 package bankapp.model;
 
+import bankapp.exception.InsufficientFundsException;
+
 public class CurrentAccount extends Account implements LoanAccount{
     private double monthlyFee;
     private double loanBalance;
@@ -35,13 +37,14 @@ public class CurrentAccount extends Account implements LoanAccount{
     }
 
     @Override
-    public void withdraw(double amount) {
+    public void withdraw(double amount) throws InsufficientFundsException {
         if (isWithdrawPossible(amount)) {
             double newBalance = getCurrentBalance() - amount;
             setCurrentBalance(newBalance);
         } else {
-            System.out.println("Withdrawing is not possible. Getting overdraft.");
             getOverdraft(amount);
+            throw new InsufficientFundsException("Withdrawing is not possible. Getting overdraft.");
+            //System.out.println("Withdrawing is not possible. Getting overdraft.");
         }
         displayBalance();
     }

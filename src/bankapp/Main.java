@@ -1,5 +1,6 @@
 package bankapp;
 
+import bankapp.exception.InsufficientFundsException;
 import bankapp.model.CurrentAccount;
 
 public class Main {
@@ -15,8 +16,13 @@ public class Main {
 
         currentAccount.displayBalance();
         currentAccount.deposit(10);
-        currentAccount.withdraw(5);
-        currentAccount.withdraw(30);
+        try {
+            currentAccount.withdraw(5);
+            currentAccount.withdraw(30);
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
+        }
+
         currentAccount.borrow(100);
         currentAccount.payLoanBack(100, 1, 10);
         currentAccount.displayBalance();
